@@ -6,6 +6,24 @@ resource "aws_internet_gateway" "main_igw" {
     }
 }
 
+resource "aws_eip" "nat_eip" {
+    vpc = true
+    depends_on = [ aws_internet_gateway.main_igw ]
+}
+
+resource "aws_nat_gateway" "nat_gateway" {
+    allocation_id = aws_eip.nat_eip.id
+    depends_on = [
+        aws_eip.nat_eip
+    ]
+    subnet_id = "${element(aws_subnet.public-subnet-A.*.id, 0)}"  // What is this?
+
+    tags = {
+      Name = "NAT gateway"
+    }
+  
+}
+
 resource "aws_route_table" "main-public-rt" {
     vpc_id = "${aws_vpc.main_vpc.id}"
 
@@ -22,38 +40,22 @@ resource "aws_route_table" "main-public-rt" {
     }
 }
 
+resource "aws_route_table" "main-private-rt" {
+    vpc_id = aws_vpc.main_vpc.id
+
+    route {
+        cidr_block = "0.0.0.0/0"
+
+        nat_gateway_id = aws_nat_gateway.nat_gateway.id
+    }
+}
+
 resource "aws_route_table_association" "main-public-rt-public-subnet-A" {
     subnet_id = "${aws_subnet.public-subnet-A.id}"
     route_table_id = "${aws_route_table.main-public-rt.id}"
 }
 
-resource "aws_security_group" "ssh-allowed" {
-    vpc_id = "${aws_vpc.main_vpc.id}"
-
-    egress {
-        from_port = 0
-        to_port = 0
-        protocol = -1
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    ingress {
-        from_port = 22
-        to_port = 22
-        protocol = "tcp"
-
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    ingress {
-        from_port = 80
-        to_port = 80
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    tags = {
-        Name = "ssh-allowed"
-    }
+resource "aws_route_table_association" "main-private-rt-private-subnet-A" {
+    subnet_id = aws_subnet.private-subnet-A.id
+    route_table_id = aws_route_table.main-private-rt.id    
 }
-
