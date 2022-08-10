@@ -2,3 +2,5 @@ Terraform/vpc/.terraform.lock.hcl
 Terraform/vpc/terraform.tfstate
 Terraform/vpc/.terraform/providers/registry.terraform.io/hashicorp/aws/4.25.0/windows_amd64/terraform-provider-aws_v4.25.0_x5.exe
 Terraform/vpc/terraform.tfstate.backup
+Terraform/vpc/ec2_kp
+Terraform/vpc/ec2_kp.pub
