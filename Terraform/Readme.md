@@ -8,7 +8,7 @@ Following are the areas will be covered as part of learning exercise
 1. VPC
 2. Simple Application Architecture
 3. Load balancer 
-    * Create Classic 
+    * Classic Load balancer
     * Application Load balancer
     * Concepts 
         * Sticky Session
