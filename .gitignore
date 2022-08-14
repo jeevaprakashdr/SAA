@@ -1,6 +1,8 @@
-Terraform/VirtualPrivateCloud/.terraform.lock.hcl
-Terraform/VirtualPrivateCloud/terraform.tfstate
-Terraform/VirtualPrivateCloud/.terraform/providers/registry.terraform.io/hashicorp/aws/4.25.0/windows_amd64/terraform-provider-aws_v4.25.0_x5.exe
-Terraform/VirtualPrivateCloud/terraform.tfstate.backup
-Terraform/VirtualPrivateCloud/ec2_kp
-Terraform/VirtualPrivateCloud/ec2_kp.pub
+*.terraform.lock.hcl
+*terraform.tfstate
+*terraform.tfstate.backup
+*ec2_kp
+*webserver_key
+*.pub
+*terraform-provider-aws_v4.25.0_x5.exe
+*terraform-provider-aws_v4.26.0_x5.exe
