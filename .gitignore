@@ -6,3 +6,4 @@
 *.pub
 *terraform-provider-aws_v4.25.0_x5.exe
 *terraform-provider-aws_v4.26.0_x5.exe
+*.terraform.tfstate.lock.info
