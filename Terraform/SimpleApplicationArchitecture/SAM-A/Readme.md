@@ -14,12 +14,12 @@ The following resources are created as part of the terraform provisioning.
 
 ## Command to run
 
-Create public and private key  with the name webserver_key
-    ssh -t rsa 
+Create public and private key  with the name webserver_key  
+ssh-keygen -t rsa  
     
-terraform init
-terraform plan
-terraform  apply -auto-approve
+terraform init  
+terraform plan  
+terraform  apply -auto-approve  
 
-Following command to tear down the resources 
+Following command to tear down the resources  
 terraform  destory  -auto-approve

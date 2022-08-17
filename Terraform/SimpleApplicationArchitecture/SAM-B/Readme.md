@@ -20,12 +20,12 @@ The following resources are created as part of the terraform provisioning.
 NOTE: once the terraform script is run the Route53 Hosted Zone Record name servers needs to be manually updated in actial domain nameservers. By forgetting this change requests to the webservers will not be fullfilled.
 
 ## Command to run
-Create public and private key  with the name webserver_key
-    ssh -t rsa 
+Create public and private key  with the name webserver_key  
+ssh-keygen -t rsa  
+    
+terraform init  
+terraform plan  
+terraform  apply -auto-approve  
 
-terraform init
-terraform plan
-terraform  apply -auto-approve
-
-Following command to tear down the resources 
+Following command to tear down the resources  
 terraform  destory  -auto-approve
